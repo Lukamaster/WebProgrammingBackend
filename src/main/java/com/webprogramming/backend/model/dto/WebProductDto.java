@@ -1,12 +1,20 @@
 package com.webprogramming.backend.model.dto;
 
-import lombok.Data;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 
-@Data
+
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class WebProductDto {
 
+    @NotEmpty
     private Long id;
-    private String productName;
+    @NotEmpty
+    private String name;
+    @NotEmpty
     private Long quantity;
 
 }

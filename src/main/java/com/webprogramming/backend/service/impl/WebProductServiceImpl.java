@@ -2,6 +2,7 @@ package com.webprogramming.backend.service.impl;
 
 import com.webprogramming.backend.model.ProductCategory;
 import com.webprogramming.backend.model.WebProduct;
+import com.webprogramming.backend.model.exceptions.ProductIDNotFoundException;
 import com.webprogramming.backend.repository.CategoryRepository;
 import com.webprogramming.backend.repository.WebProductRepository;
 import com.webprogramming.backend.service.WebProductService;
@@ -38,7 +39,7 @@ public class WebProductServiceImpl implements WebProductService {
 
     @Override
     public WebProduct findById(Long id) {
-        return webProductRepository.findById(id).orElseThrow();
+        return webProductRepository.findById(id).orElseThrow(ProductIDNotFoundException::new);
     }
 
     @Override

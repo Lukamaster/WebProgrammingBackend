@@ -46,6 +46,7 @@ public class StripeServiceImpl implements StripeService {
 
     @Override
     public Price createStripeProduct(WebProduct webProduct) throws StripeException {
+        System.out.println(webProduct);
         Map<String, Object> params = new HashMap<>();
         params.put("name", webProduct.getProductName());
 

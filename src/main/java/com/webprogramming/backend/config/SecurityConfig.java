@@ -2,6 +2,7 @@ package com.webprogramming.backend.config;
 
 import com.webprogramming.backend.config.jwt.JwtAthFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -23,7 +24,8 @@ public class SecurityConfig {
             "/swagger-ui/**",
             "/swagger-ui.html",
             "/api/users/*",
-            "/error"
+            "/error",
+            "/api/payment/createSession"
     };
     private final JwtAthFilter jwtAthFilter;
     private final AuthenticationProvider authenticationProvider;
@@ -31,7 +33,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
 
-//        http.authorizeHttpRequests().requestMatchers(PathRequest.toH2Console()).permitAll();
+        //http.authorizeHttpRequests().requestMatchers(PathRequest.toH2Console()).permitAll();
         http.headers().frameOptions().disable();
 
         http.csrf()
