@@ -5,15 +5,20 @@ import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
+import com.stripe.model.Price;
+import com.stripe.model.Product;
 import com.stripe.param.ChargeCreateParams;
 import com.stripe.param.CustomerCreateParams;
 import com.webprogramming.backend.config.PurchaseConfig;
+import com.webprogramming.backend.model.WebProduct;
 import com.webprogramming.backend.service.UserService;
 import com.webprogramming.backend.stripe.PaymentDTO;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +42,21 @@ public class StripeServiceImpl implements StripeService {
             log.error(e.getMessage());
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public Price createStripeProduct(WebProduct webProduct) throws StripeException {
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", webProduct.getProductName());
+
+        Product product = Product.create(params);
+
+        Map<String, Object> priceParams = new HashMap<>();
+        priceParams.put("unit_amount", webProduct.getPrice());
+        priceParams.put("currency", "aed");
+        priceParams.put("product", product.getId());
+
+        return Price.create(priceParams);
     }
 
     private ChargeCreateParams getChargeCreateParams(PaymentDTO paymentDTO, Customer customer) {
