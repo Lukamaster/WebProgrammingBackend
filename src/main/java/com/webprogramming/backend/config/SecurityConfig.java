@@ -24,6 +24,8 @@ public class SecurityConfig {
             "/swagger-ui/**",
             "/swagger-ui.html",
             "/api/users/*",
+            "/api/products/*",
+            "/api/categories/*",
             "/error",
             "/api/payment/createSession"
     };
