@@ -15,10 +15,10 @@ public class WebProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
     private String productName;
     private String productCode;
-    private int price;
+    private Integer price;
     @ManyToOne
     private ProductCategory productCategory;
     private String productBrand;
@@ -26,6 +26,7 @@ public class WebProduct {
     private String productDescription;
     private String specifications;
 
-
-
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private ShoppingCart shoppingCart;
 }

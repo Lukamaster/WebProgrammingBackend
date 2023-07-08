@@ -5,7 +5,7 @@ import com.webprogramming.backend.model.dto.AuthenticationResponse;
 import com.webprogramming.backend.model.dto.RegisterRequest;
 import com.webprogramming.backend.service.AuthenticationService;
 import com.webprogramming.backend.service.UserService;
-import com.webprogramming.backend.model.AppUser;
+import com.webprogramming.backend.model.identity.AppUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

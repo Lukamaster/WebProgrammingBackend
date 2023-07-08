@@ -22,12 +22,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 )
 public class WebProgrammingBackend {
 
+	public static void main(String[] args) {
+		SpringApplication.run(WebProgrammingBackend.class,args);
+	}
 
 	@PostConstruct
 	public void setup() {
 		Stripe.apiKey = "sk_test_51NOOIfF4xvj0hs3UKGPmklCC0G4RLPrb96xU0c6LtgZE7vGZbtWfVYeJ81RNvzE8FgSNIfajqjRb71Bmj9T4DKNX00PhLsq1fw";
-	}
-	public static void main(String[] args) {
-		SpringApplication.run(WebProgrammingBackend.class, args);
 	}
 }

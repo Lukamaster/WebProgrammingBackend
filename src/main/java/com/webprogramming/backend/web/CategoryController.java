@@ -3,6 +3,7 @@ package com.webprogramming.backend.web;
 import com.webprogramming.backend.model.ProductCategory;
 import com.webprogramming.backend.service.impl.ProductCategoryServiceImpl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

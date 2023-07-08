@@ -1,6 +1,6 @@
 package com.webprogramming.backend.model.mapper;
 
-import com.webprogramming.backend.model.AppUser;
+import com.webprogramming.backend.model.identity.AppUser;
 import com.webprogramming.backend.model.dto.AppUserDetailsDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

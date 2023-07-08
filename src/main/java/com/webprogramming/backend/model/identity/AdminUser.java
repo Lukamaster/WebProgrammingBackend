@@ -1,7 +1,14 @@
-package com.webprogramming.backend.model;
+package com.webprogramming.backend.model.identity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import com.webprogramming.backend.model.Role;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,14 +22,14 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "nfc_users")
-public class AppUser extends BaseUserClass implements UserDetails {
+@Table(name = "admin_users")
+public class AdminUser extends BaseUserClass implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @Builder
-    public AppUser(UUID id, String firstName, String username, String lastName, String email, Date dateOfBirth, String countryOfResidence, String password, Role role) {
+    public AdminUser(UUID id, String firstName, String username, String lastName, String email, Date dateOfBirth, String countryOfResidence, String password, Role role) {
         super(id, firstName, username, lastName, email, dateOfBirth, countryOfResidence, password);
         this.role = role;
     }

@@ -26,6 +26,7 @@ public class SecurityConfig {
             "/api/users/*",
             "/api/products/*",
             "/api/categories/*",
+            "/api/cart/*",
             "/error",
             "/api/payment/createSession"
     };

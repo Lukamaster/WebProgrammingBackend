@@ -1,4 +1,4 @@
-package com.webprogramming.backend.model;
+package com.webprogramming.backend.model.identity;
 
 import jakarta.persistence.*;
 import lombok.*;

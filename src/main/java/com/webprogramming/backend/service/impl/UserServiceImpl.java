@@ -1,12 +1,14 @@
 package com.webprogramming.backend.service.impl;
 
-import com.webprogramming.backend.model.AppUser;
+import com.webprogramming.backend.model.identity.AppUser;
 import com.webprogramming.backend.model.Role;
 import com.webprogramming.backend.model.dto.AppUserDetailsDto;
 import com.webprogramming.backend.model.dto.RegisterRequest;
 import com.webprogramming.backend.model.mapper.AppUserMapper;
 import com.webprogramming.backend.repository.UserRepository;
+import com.webprogramming.backend.service.ShoppingCartService;
 import com.webprogramming.backend.service.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
@@ -29,6 +31,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AppUserMapper userMapper;
+    private final ShoppingCartService shoppingCartService;
 
     @Override
     public AppUser findByEmail(String email) {
@@ -42,6 +45,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public AppUser saveUser(RegisterRequest request) {
         AppUser appUser = AppUser.builder()
                 .firstName(request.getFirstName())
@@ -54,7 +58,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .role(Role.USER)
                 .build();
         try {
-           return userRepository.save(appUser);
+            AppUser createdUser = userRepository.save(appUser);
+            shoppingCartService.createShoppingCart(createdUser);
+            return createdUser;
         } catch (Exception e) {
             throw new IllegalArgumentException(e.getMessage());
         }

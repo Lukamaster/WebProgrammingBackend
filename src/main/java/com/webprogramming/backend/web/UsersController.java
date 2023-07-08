@@ -1,6 +1,6 @@
 package com.webprogramming.backend.web;
 
-import com.webprogramming.backend.model.AppUser;
+import com.webprogramming.backend.model.identity.AppUser;
 import com.webprogramming.backend.model.dto.AppUserDetailsDto;
 import com.webprogramming.backend.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

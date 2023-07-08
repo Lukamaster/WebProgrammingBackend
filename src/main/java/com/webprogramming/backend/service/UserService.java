@@ -1,6 +1,6 @@
 package com.webprogramming.backend.service;
 
-import com.webprogramming.backend.model.AppUser;
+import com.webprogramming.backend.model.identity.AppUser;
 import com.webprogramming.backend.model.dto.AppUserDetailsDto;
 import com.webprogramming.backend.model.dto.RegisterRequest;
 
