@@ -28,6 +28,6 @@ public class WebProduct {
     private String productDescription;
     private String specifications;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "products")
     List<ShoppingCart> carts;
 }
