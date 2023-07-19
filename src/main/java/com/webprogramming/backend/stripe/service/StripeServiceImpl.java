@@ -53,7 +53,7 @@ public class StripeServiceImpl implements StripeService {
         Product product = Product.create(params);
 
         Map<String, Object> priceParams = new HashMap<>();
-        priceParams.put("unit_amount", webProduct.getPrice());
+        priceParams.put("unit_amount", webProduct.getPrice() * 100);
         priceParams.put("currency", "aed");
         priceParams.put("product", product.getId());
 

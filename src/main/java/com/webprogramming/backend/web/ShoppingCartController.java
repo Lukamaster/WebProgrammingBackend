@@ -16,18 +16,19 @@ import java.util.List;
 @RequestMapping("/api/cart")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "securityScheme")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ShoppingCartController {
 
     private final ShoppingCartService shoppingCartService;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getCart(@PathVariable Long id){
-        try{
+//        try{
             ShoppingCartDto shoppingCart = shoppingCartService.getShoppingCart(id);
             return ResponseEntity.ok(shoppingCart);
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+//        }catch (Exception e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
     }
 
     @PutMapping("/add-product")
