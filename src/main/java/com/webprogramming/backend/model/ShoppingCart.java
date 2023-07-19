@@ -24,7 +24,10 @@ public class ShoppingCart {
 
     private Boolean status;
 
-    @OneToMany(mappedBy = "shoppingCart")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "shopping_cart_products",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "cart_id"))
     private List<WebProduct> products;
 
     @OneToMany(mappedBy = "shoppingCart")

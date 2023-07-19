@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -26,7 +28,6 @@ public class WebProduct {
     private String productDescription;
     private String specifications;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private ShoppingCart shoppingCart;
+    @ManyToMany
+    List<ShoppingCart> carts;
 }
