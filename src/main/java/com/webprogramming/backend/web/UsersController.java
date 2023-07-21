@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @SecurityRequirement(name = "securityScheme")
 @CrossOrigin(origins = "http://localhost:3000")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class UsersController {
 
     private final UserService userService;
@@ -26,7 +27,6 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AppUserDetailsDto> getUserWithId(@PathVariable String id){
         return ResponseEntity.ok(userService.getUserById(id));
     }
