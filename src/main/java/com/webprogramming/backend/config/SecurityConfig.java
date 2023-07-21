@@ -2,7 +2,6 @@ package com.webprogramming.backend.config;
 
 import com.webprogramming.backend.config.jwt.JwtAthFilter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -45,6 +44,7 @@ public class SecurityConfig {
 
         //http.authorizeHttpRequests().requestMatchers(PathRequest.toH2Console()).permitAll();
         http.headers().frameOptions().disable();
+        http.cors();
 
         http.csrf()
                 .disable()
