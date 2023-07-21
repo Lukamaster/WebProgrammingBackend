@@ -22,18 +22,14 @@ import java.util.List;
 public class SecurityConfig {
 
     private static final String[] REQUEST_MATCHERS = {
-            "/api/v1/auth/**",
+            "/api/auth/**",
             "/v3/api-docs/**",
             "/v3/api-docs.yaml",
             "/swagger-ui/**",
             "/swagger-ui.html",
-            "/api/users/*",
-            "/api/products/*",
-            "/api/products/view/*",
-            "/api/categories/*",
-            "/api/cart/*",
+            "/api/products/**",
+            "/api/categories/**",
             "/error",
-            "/api/payment/createSession"
     };
     private final JwtAthFilter jwtAthFilter;
     private final AuthenticationProvider authenticationProvider;
@@ -42,8 +38,7 @@ public class SecurityConfig {
     public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
 
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
-        corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:8080"));
+        corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setExposedHeaders(List.of("Authorization"));

@@ -4,26 +4,27 @@ import com.webprogramming.backend.model.dto.AuthenticationRequest;
 import com.webprogramming.backend.model.dto.AuthenticationResponse;
 import com.webprogramming.backend.model.dto.RegisterRequest;
 import com.webprogramming.backend.service.AuthenticationService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "securityScheme")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<HttpStatus> register(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok().body(authenticationService.register(request));
     }
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok().body(authenticationService.authenticate(request));
 

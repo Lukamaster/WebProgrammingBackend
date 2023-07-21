@@ -17,9 +17,9 @@ public abstract class BaseUserClass {
     @GeneratedValue(strategy = GenerationType.UUID)
     protected UUID id;
 
-    @Column(unique=true)
     protected String firstName;
 
+    @Column(unique=true)
     protected String username;
 
     protected String lastName;

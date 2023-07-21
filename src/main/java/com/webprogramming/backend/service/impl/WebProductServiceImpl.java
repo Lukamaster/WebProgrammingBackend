@@ -6,6 +6,7 @@ import com.webprogramming.backend.model.exceptions.ProductIDNotFoundException;
 import com.webprogramming.backend.repository.CategoryRepository;
 import com.webprogramming.backend.repository.WebProductRepository;
 import com.webprogramming.backend.service.WebProductService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,16 +49,19 @@ public class WebProductServiceImpl implements WebProductService {
     }
 
     @Override
+    @Transactional
     public WebProduct createProduct() {
         return null;
     }
 
     @Override
+    @Transactional
     public WebProduct updateProduct() {
         return null;
     }
 
     @Override
+    @Transactional
     public WebProduct deleteProduct(Long id) {
         WebProduct webProduct = this.findById(id);
         this.webProductRepository.delete(webProduct);

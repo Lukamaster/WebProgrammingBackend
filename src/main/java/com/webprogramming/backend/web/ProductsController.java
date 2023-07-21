@@ -38,8 +38,4 @@ public class ProductsController {
     public ResponseEntity<WebProduct> searchProduct(@PathVariable String searchQuery) {
         return ResponseEntity.ok(webProductService.findByName(searchQuery));
     }
-
-
-
-
 }
