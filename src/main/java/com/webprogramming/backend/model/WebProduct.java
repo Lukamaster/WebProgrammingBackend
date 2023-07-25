@@ -30,4 +30,14 @@ public class WebProduct {
 
     @ManyToMany(mappedBy = "products")
     List<ShoppingCart> carts;
+
+    public WebProduct(String name, String code, Integer price, ProductCategory category, String brand, String deliveryLocation, String description, String specifications) {
+        this.productName = name;
+        this.productCode = code;
+        this.productCategory = category;
+        this.productBrand = brand;
+        this.deliveryLocation = deliveryLocation;
+        this.productDescription = description;
+        this.specifications = specifications;
+    }
 }

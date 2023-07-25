@@ -1,5 +1,6 @@
 package com.webprogramming.backend.service.impl;
 
+import com.webprogramming.backend.model.Role;
 import com.webprogramming.backend.model.dto.AuthenticationRequest;
 import com.webprogramming.backend.model.dto.AuthenticationResponse;
 import com.webprogramming.backend.model.dto.RegisterRequest;
@@ -23,7 +24,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
 
     @Override
-    @Transactional
+    //@Transactional
     public HttpStatus register(RegisterRequest request) {
         try{
             userService.saveUser(request);
@@ -42,10 +43,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 )
         );
         AppUser appUser = userService.findByEmail(request.getEmail());
+        Role userRole = appUser.getRole();
+        String userName = appUser.getFirstName();
+        boolean isAdmin;
+
+        if(userRole == Role.ADMIN) {
+            isAdmin = true;
+        }
+        else {
+            isAdmin = false;
+        }
+
 
         String jwtToken = jwtService.generateToken(appUser);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .firstName(userName)
+                .isAdmin(isAdmin)
                 .build();
     }
 }

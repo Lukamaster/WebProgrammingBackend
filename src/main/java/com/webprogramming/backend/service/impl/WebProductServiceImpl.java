@@ -50,14 +50,24 @@ public class WebProductServiceImpl implements WebProductService {
 
     @Override
     @Transactional
-    public WebProduct createProduct() {
-        return null;
+    public WebProduct createProduct(String name, String code, Integer price, ProductCategory category, String brand, String deliveryLocation, String description, String specifications) {
+        WebProduct newProduct = new WebProduct(name, code, price, category, brand, deliveryLocation, description, specifications);
+        return webProductRepository.save(newProduct);
     }
 
     @Override
     @Transactional
-    public WebProduct updateProduct() {
-        return null;
+    public WebProduct updateProduct(Long id, String name, String code, Integer price, ProductCategory category, String brand, String deliveryLocation, String description, String specifications) {
+        WebProduct editedProduct = webProductRepository.findById(id).orElseThrow(ProductIDNotFoundException::new);
+        editedProduct.setProductName(name);
+        editedProduct.setProductCode(code);
+        editedProduct.setPrice(price);
+        editedProduct.setProductCategory(category);
+        editedProduct.setProductBrand(brand);
+        editedProduct.setDeliveryLocation(deliveryLocation);
+        editedProduct.setProductDescription(description);
+        editedProduct.setSpecifications(specifications);
+        return editedProduct;
     }
 
     @Override
