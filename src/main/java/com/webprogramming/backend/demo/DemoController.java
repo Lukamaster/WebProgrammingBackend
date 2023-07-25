@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     @GetMapping
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<String> sayHello() {
         return ResponseEntity.ok("Hello From Secure End.");
     }
